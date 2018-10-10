@@ -54,9 +54,13 @@ var p2card1 = pickCard(shuffledDeck)
 var p2card2 = pickCard(shuffledDeck)
 var p1score = p1card1[1] + p1card2[1]
 var p2score = p2card1[1] + p2card2[1]
+var p1card1Content = document.querySelector('.p1card1')
+var p1card2Content = document.querySelector('.p1card2')
+var p2card1Content = document.querySelector('.p2card1')
+var p2card2Content = document.querySelector('.p2card2')
 
 function winner(p1score, p2score) {
-    var winner = null;
+    var winner = null
     switch (true) {
         case (p1score > 21 && p2score < 21):
             winner = 'P1 Score: ' + p1score + ' P2 Score: ' + p2score + ' Player 1 Busted!'
@@ -66,7 +70,7 @@ function winner(p1score, p2score) {
             break
         case (p1score < p2score):
             winner = 'P1 Score: ' + p1score + ' P2 Score: ' + p2score + ' Player 2 has Won!'
-            break;
+            break
         case (p1score > p2score):
             winner = 'P1 Score: ' + p1score + ' P2 Score: ' + p2score + ' Player 1 has Won!'
     }
@@ -74,10 +78,10 @@ function winner(p1score, p2score) {
 }
 
 /////////////////////////
-document.querySelector('.p1card1').textContent = p1card1[0];
-document.querySelector('.p1card2').textContent = p1card2[0];
-document.querySelector('.p2card1').textContent = p2card1[0];
-document.querySelector('.p2card2').textContent = p2card2[0];
+p1card1Content.textContent = p1card1[0];
+p1card2Content.textContent = p1card2[0];
+p2card1Content.textContent = p2card1[0];
+p2card2Content.textContent = p2card2[0];
 
 document.querySelector('.score').textContent = winner(p1score, p2score)
 
@@ -85,11 +89,6 @@ document.querySelector('.score').textContent = winner(p1score, p2score)
 function drawExtra(pickCard, shuffledDeck) {
     var extra = pickCard(shuffledDeck)
     return extra
-}
-
-
-function reevaluate(drawExtra, score, pickCard, shuffledDeck) {
-
 }
 
 document.querySelector('.p1Extra').addEventListener('click', function() {
