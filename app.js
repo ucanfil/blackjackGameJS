@@ -1,4 +1,6 @@
 var numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
+var p1cards = []
+var p2cards = []
 
 function createSuit(numbers, suit) {
     var cards = []
@@ -48,14 +50,25 @@ function pickCard(deck) {
     return deck.pop()
 }
 
-console.log(shuffledDeck);
-
 var p1card1 = pickCard(shuffledDeck)
+p1cards.push(p1card1)
 var p1card2 = pickCard(shuffledDeck)
+p1cards.push(p1card2)
 var p2card1 = pickCard(shuffledDeck)
+p2cards.push(p2card1)
 var p2card2 = pickCard(shuffledDeck)
-var p1score = p1card1[1] + p1card2[1]
-var p2score = p2card1[1] + p2card2[1]
+p2cards.push(p2card2)
+
+var p1score = calcScore(p1cards)
+var p2score = calcScore(p2cards)
+
+
+function calcScore(playerCards) {
+    return playerCards.reduce(function(total, amount) {
+        return total + amount[1]
+    }, 0)
+}
+
 var p1card1Content = document.querySelector('.p1card1')
 var p1card2Content = document.querySelector('.p1card2')
 var p2card1Content = document.querySelector('.p2card1')
