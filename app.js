@@ -77,17 +77,10 @@ var p1scoreContent = document.querySelector('.p1score')
 var p2scoreContent = document.querySelector('.p2score')
 var winnerContent = document.querySelector('.winner')
 
-/////////////////////////
-
-p1scoreContent.textContent = p1score
-p2scoreContent.textContent = p2score
-winnerContent.textContent = winner(p1score, p2score)
-
-
 function renderCard(cardContent, card) {
     cardContent.textContent = card[0]
     if (card[1] == 11) {
-        cardContent.insertAdjacentHTML('afterend', ' <button class="switchValues">Switch Values</button>')
+        cardContent.insertAdjacentHTML('beforeend', ' <button class="switchValues">Switch Values</button>')
     }
 }
 
@@ -101,35 +94,65 @@ function winner(p1score, p2score) {
     switch (true) {
         case (p1score > 21):
             winner = 'P1 Busted'
+            cancelEventListeners()
             break
         case (p2score > 21):
             winner = 'P2 Busted'
+            cancelEventListeners()
             break
         case (p1score < p2score):
-            winner = 'P2 has Won!'
+            winner = 'P2 is ahead!'
+            // cancelEventListeners()
             break
         case (p1score > p2score):
-            winner = 'P1 has Won!'
+            winner = 'P1 is ahead!'
+            // cancelEventListeners()
+            break
     }
     return winner
 }
 
-function drawExtra(pickCard, shuffledDeck) {
-    var extra = pickCard(shuffledDeck)
-    return extra
+function drawExtra(pickCard, shuffledDeck, playerCards) {
+    playerCards.push(pickCard(shuffledDeck))
 }
 
+/////////////////////////
+
+p1scoreContent.textContent = p1score
+p2scoreContent.textContent = p2score
+winnerContent.textContent = winner(p1score, p2score)
 
 
+document.querySelector('.p1Extra').addEventListener('click', hit1)
+document.querySelector('.p2Extra').addEventListener('click', hit2)
 
-document.querySelector('.p1Extra').addEventListener('click', function() {
-    console.log(p1score, p2score)
-    var p1card3 = drawExtra(pickCard, shuffledDeck)
+function hit1() {
+    drawExtra(pickCard, shuffledDeck, p1cards)
+    var p1card3 = p1cards[p1cards.length - 1]
     p1card2Content.insertAdjacentHTML
-    ('afterend', '<p>Card ' + counter + ': <span class="card p1card3">' + p1card3[0] + '</span></p>')
+    ('afterend', '<p>Card ' + p1cards.length + ': <span class="card p1card3">' + p1card3[0] + '</span></p>')
     var p1card3Content = document.querySelector('.p1card3')
     renderCard(p1card3Content, p1card3)
-    p1score = p1score + p1card3[1]
+    p1score = calcScore(p1cards)
+    p1scoreContent.textContent = p1score
     console.log(p1score, p2score)
     winnerContent.textContent = winner(p1score, p2score)
-})
+}
+
+function hit2() {
+    drawExtra(pickCard, shuffledDeck, p2cards)
+    var p2card3 = p2cards[p2cards.length - 1]
+    p2card2Content.insertAdjacentHTML
+    ('afterend', '<p>Card ' + p2cards.length + ': <span class="card p2card3">' + p2card3[0] + '</span></p>')
+    var p2card3Content = document.querySelector('.p2card3')
+    renderCard(p2card3Content, p2card3)
+    p2score = calcScore(p2cards)
+    p2scoreContent.textContent = p2score
+    console.log(p1score, p2score)
+    winnerContent.textContent = winner(p1score, p2score)
+}
+
+function cancelEventListeners() {
+    document.querySelector('.p1Extra').removeEventListener('click', hit1)
+    document.querySelector('.p2Extra').removeEventListener('click', hit2)
+}
