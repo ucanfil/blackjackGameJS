@@ -5,25 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Blackjack Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="player player1">
-        <h3>Player 1</h3>
-        <p>Card 1: <span class="card p1card1"></span></p>
-        <p>Card 2: <span class="card p1card2"></span></p>
-        <button class="p1Extra">Draw Extra</button>
-    </div>
-    <div class="player player2">
-        <h3>Player 2</h3>
-        <p>Card 1: <span class="card p2card1"></span></p>
-        <p>Card 2: <span class="card p2card2"></span></p>
-        <button class="p2Extra">Draw Extra</button>
-    </div>
-    <div>
-        <h3>SCORE</h3>
-        <p>P1 Score: <span class="p1score"></span> P2 Score: <span class="p2score"></span> Winner:
-            <span class="winner"></span></p>
-    </div>
+    <main>
+        <div class="dealer_container">
+            <div class="dealer">
+                <h1>Dealer</h1>
+                <ul class="dealercards">
+
+                </ul>
+                <span class="dealer_score score"></span>
+            </div>
+            <ul class="deck">
+
+            </ul>
+        </div>
+        <ul class="players">
+
+        </ul>
+    </main>
 <script src="app.js"></script>
 </body>
 </html>
