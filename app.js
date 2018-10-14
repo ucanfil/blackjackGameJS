@@ -28,6 +28,11 @@ var octopus = {
         model.deck = this.shuffleDeck(this.createDeck(model.suits, model.cards))
         this.drawCards()
         this.calcScore()
+        viewDealer.init()
+    },
+
+    getModel : function() {
+        return model
     },
 
     createDeck: function(suits, cards) {
@@ -36,7 +41,7 @@ var octopus = {
             for (var j = 0; j < cards.length; j++) {
                 var card = {}
                 card['suit'] = suits[i]
-                card['face'] = 'down'
+                card['face'] = 'up'
                 switch (true) {
                     case (cards[j] == 'J'):
                     case (cards[j] == 'Q'):
@@ -95,8 +100,22 @@ var octopus = {
 
 }
 
-var view = {
+var viewDealer = {
+    init: function() {
+        this.dealerCards = document.querySelector('.dealer_cards')
+        this.dealerScore = document.querySelector('.dealer_score')
 
+        this.render()
+    },
+
+    render: function() {
+        var dealer = octopus.getModel().dealer
+        this.dealerScore.innerText = dealer.score
+        this.dealerCards.innerHTML = ''
+        dealer.cards.forEach((card, i) => {
+            this.dealerCards.innerHTML += '<li class="card card-' + card.card + ' card' + (i + 1) + ' ' + card.suit + ' ' + card.face + '"><span></span></li>'
+        })
+    }
 }
 
 

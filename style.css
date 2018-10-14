@@ -11,12 +11,154 @@ html {
 main {
     width: 100%;
     height: 100%;
+    font-size: 1.6rem;
 }
 
 .dealer_container {
     margin: 0 auto;
     width: 400px;
     height: 200px;
+}
+
+ul {
+    list-style: none;
+    position: relative;
+}
+
+.dealer {
+    position: relative;
+}
+
+.card {
+    width: 100px;
+    height: 150px;
+    position: absolute;
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+}
+
+.card:before {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    font-size: 2rem;
+}
+
+.card:after {
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    font-size: 2rem;
+}
+
+.card1 {
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.card2 {
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    background-color: #fff;
+}
+
+.hearts,
+.diamonds {
+    color: red;
+}
+
+.hearts span:before {
+    content: '♥';
+}
+
+.diamonds span:before {
+    content: '♦';
+}
+
+.clubs span:before {
+    content: '♣';
+}
+
+.spades span:before {
+    content: '♠';
+}
+
+.card-2:before,
+.card-2:after {
+    content: '2';
+}
+
+.card-3:before,
+.card-3:after {
+    content: '3';
+}
+
+.card-4:before,
+.card-4:after {
+    content: '4';
+}
+
+.card-5:before,
+.card-5:after {
+    content: '5';
+}
+
+.card-6:before,
+.card-6:after {
+    content: '6';
+}
+
+.card-7:before,
+.card-7:after {
+    content: '7';
+}
+
+.card-8:before,
+.card-8:after {
+    content: '8';
+}
+
+.card-9:before,
+.card-9:after {
+    content: '9';
+}
+
+.card-10:before,
+.card-10:after {
+    content: '10';
+}
+
+.card-J:before,
+.card-J:after {
+    content: 'J';
+}
+
+.card-Q:before,
+.card-Q:after {
+    content: 'Q';
+}
+
+.card-K:before,
+.card-K:after {
+    content: 'K';
+}
+
+.card-A:before,
+.card-A:after {
+    content: 'A';
+}
+
+.dealer_score {
+    position: absolute;
+    top: 100%;
+    left: 50%;
 }
 
 .players {
