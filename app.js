@@ -29,6 +29,7 @@ var octopus = {
         this.drawCards()
         this.calcScore()
         viewDealer.init()
+        viewPlayers.init()
     },
 
     getModel : function() {
@@ -114,6 +115,26 @@ var viewDealer = {
         this.dealerCards.innerHTML = ''
         dealer.cards.forEach((card, i) => {
             this.dealerCards.innerHTML += '<li class="card card-' + card.card + ' card' + (i + 1) + ' ' + card.suit + ' ' + card.face + '"><span></span></li>'
+        })
+    }
+}
+
+var viewPlayers = {
+    init: function() {
+        this.players = document.querySelector('.players')
+
+        this.render()
+    },
+
+    render: function() {
+        var players = octopus.getModel().players
+        this.players.innerHTML = ''
+        players.forEach((player, i) => {
+            this.players.innerHTML += `<div class="player${i+1}_container"><h3 class="player${i+1}_heading">
+            ${player.name}</h3><ul class="player${i+1}">
+            ${player.cards.map((card, j) =>
+                `<li class="card card-${card.card} card${j+1} ${card.suit} ${card.face}"><span></span></li>`
+            ).join('')}</ul></div>`
         })
     }
 }

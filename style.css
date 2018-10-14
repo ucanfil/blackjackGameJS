@@ -40,6 +40,7 @@ ul {
     justify-content: center;
     align-items: center;
     font-weight: 800;
+    background-color: #fff;
 }
 
 .card:before {
@@ -63,10 +64,19 @@ ul {
 }
 
 .card2 {
-    top: 20px;
-    left: 20px;
+    top: 5px;
+    left: 30px;
     z-index: 2;
-    background-color: #fff;
+}
+
+.card3 {
+    left: 60px;
+    z-index: 3;
+}
+
+.card4 {
+    left: 90px;
+    z-index: 4;
 }
 
 .hearts,
@@ -163,6 +173,9 @@ ul {
 
 .players {
     margin: 0 auto;
-    width: 1000px;
-    height: 200px;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
